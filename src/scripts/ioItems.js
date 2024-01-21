@@ -1,6 +1,5 @@
 export const ioView = () => {
   let elem = document.querySelectorAll(".js-pull-view, .js-fade-up");
-  console.log(elem);
   const io = new IntersectionObserver(inViewport, {
     threshold: [0],
   });
