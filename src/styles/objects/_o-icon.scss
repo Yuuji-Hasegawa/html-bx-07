@@ -6,13 +6,15 @@
   gap: setting.f-space-em(s);
   align-items: baseline;
 
+  &--gap-s {
+    gap: setting.f-space-px(s);
+  }
+
   &--center {
     align-items: center;
   }
 
-  &--header-logo,
   &--footer-logo {
-    gap: setting.f-space-px(s);
     color: currentcolor;
     transition: all 0.25s ease;
 
@@ -53,19 +55,27 @@
       }
     }
   }
+
+  &--accordion {
+    position: absolute;
+    top: 50%;
+    right: clamp(
+      clamp(setting.f-space-px(m), setting.breakpoints(overm), setting.f-space-px(xl)),
+      setting.breakpoints(overs),
+      clamp(setting.f-space-px(xl), setting.breakpoints(overm), setting.f-space-px(3xl))
+    );
+    transition: all 0.1s ease-out;
+    transform: translateY(-50%);
+
+    .o-box--accordion[open] & {
+      transform: translateY(-50%) rotate(180deg);
+    }
+  }
 }
 
 .o-icon {
   font-size: setting.f-font-emsize(2xs);
   line-height: setting.f-lineheight(none);
-
-  .o-icon-parent--header-logo & {
-    font-size: clamp(
-      map.get(setting.$fontRemSize, 3xl),
-      (setting.breakpoints(overm)),
-      map.get(setting.$fontRemSize, 4xl)
-    );
-  }
 
   .o-icon-parent--footer-logo & {
     font-size: clamp(

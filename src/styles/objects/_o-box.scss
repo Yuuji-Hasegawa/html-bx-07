@@ -207,13 +207,42 @@
   }
 
   &--menu-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: calc(2 * setting.f-space-px(l));
+    height: calc(2 * setting.f-space-px(l));
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: calc(-1 * 2 * setting.f-space-px(l));
+    color: currentcolor;
     background: transparent;
-    border-color: var(--c-border-divider);
+    border-radius: setting.f-border-radius(s);
+    transition: all 0.25s ease;
+
+    &:hover,
+    &:focus {
+      color: var(--c-text-hover);
+      background-color: color-mix(in oklab, transparent, currentcolor 15%);
+      border-color: var(--c-text-hover);
+    }
+
+    &:focus {
+      outline-color: color-mix(in oklab, transparent, var(--c-text-hover) 15%);
+    }
   }
 
   &--round-label {
     padding: setting.f-space-em(2xs) setting.f-space-em(s);
     border-color: transparent;
     border-radius: setting.f-font-emsize(m);
+  }
+
+  &--accordion {
+    border-top: solid 1px var(--c-border-divider);
+
+    &:last-of-type {
+      border-bottom: solid 1px var(--c-border-divider);
+    }
   }
 }

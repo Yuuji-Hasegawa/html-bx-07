@@ -1,47 +1,33 @@
 export const menu = () => {
-  let btn = document.querySelector(".o-box--menu-btn");
+  let btns = document.querySelectorAll(".o-box--menu-btn");
+  let btn = Array.prototype.slice.call(btns, 0);
+  let cover = document.querySelector(".c-gnav-bg");
   let gnav = document.querySelector("#gnav");
-  function init() {
-    if (window.matchMedia("(min-width: 961px)").matches) {
-      gnav.setAttribute("tabindex", "");
-      gnav.setAttribute("aria-hidden", "false");
-      btn.setAttribute("aria-label", "menu open");
-      btn.setAttribute("aria-expanded", "true");
-    } else {
-      gnav.setAttribute("tabindex", "-1");
-      gnav.setAttribute("aria-hidden", "true");
-      btn.setAttribute("aria-label", "menu open");
-      btn.setAttribute("aria-expanded", "false");
-    }
-    gnav.classList.remove("c-gnav--is-open");
-    btn.classList.remove("is-open");
-    btn.blur();
-  }
   function check() {
     if (gnav.getAttribute("tabindex") == "-1") {
-      btn.classList.add("is-open");
-      btn.setAttribute("aria-expanded", "true");
-      btn.setAttribute("aria-label", "menu close");
-      gnav.classList.add("c-gnav--is-open");
+      for (var i = 0; i < btns.length; i++) {
+        btns[i].setAttribute("aria-expanded", "true");
+        btns[i].setAttribute("aria-label", "menu close");
+        btns[i].blur();
+      }
       gnav.setAttribute("tabindex", "");
       gnav.setAttribute("aria-hidden", "false");
     } else {
-      btn.classList.remove("is-open");
-      btn.setAttribute("aria-expanded", "false");
-      btn.setAttribute("aria-label", "menu open");
-      gnav.classList.remove("c-gnav--is-open");
+      for (var j = 0; j < btns.length; j++) {
+        btns[j].setAttribute("aria-expanded", "false");
+        btns[j].setAttribute("aria-label", "menu open");
+        btns[j].blur();
+      }
       gnav.setAttribute("tabindex", "-1");
       gnav.setAttribute("aria-hidden", "true");
-      btn.blur();
     }
   }
-  btn.addEventListener("click", () => {
+  btn.forEach((target) => {
+    target.addEventListener("click", () => {
+      check();
+    });
+  });
+  cover.addEventListener("click", () => {
     check();
-  });
-  window.addEventListener("load", () => {
-    init();
-  });
-  window.addEventListener("resize", () => {
-    init();
   });
 };
