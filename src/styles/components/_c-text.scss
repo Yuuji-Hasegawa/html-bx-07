@@ -244,7 +244,7 @@
   position: relative;
   color: currentcolor;
   cursor: pointer;
-  border-bottom: solid 1px transparent;
+  border-bottom: solid 0 transparent;
   transition: all 0.25s ease-out;
 
   &:hover,
@@ -254,6 +254,7 @@
   }
 
   .o-box--accordion[open] & {
+    border-width: 1px;
     border-color: var(--c-border-divider);
   }
 }
